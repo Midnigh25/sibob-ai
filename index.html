@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'">
+<title>Sibob AI</title>
+<link rel="stylesheet" href="style.css">
+<script src="renderer.js" defer></script>
+</head>
+<body>
+<main>
+  <header><h1>Sibob AI</h1><p>Desktop dictation</p></header>
+  <section aria-labelledby="dictation-heading">
+    <div class="row"><h2 id="dictation-heading">Dictation</h2><button id="record" type="button" disabled>Start recording</button></div>
+    <p id="status" role="status">Loading settings…</p>
+    <label for="transcript">Latest transcript</label>
+    <textarea id="transcript" rows="3" readonly placeholder="Your transcript will appear here."></textarea>
+  </section>
+  <section aria-labelledby="settings-heading">
+    <h2 id="settings-heading">Settings</h2>
+    <form id="settings">
+      <fieldset id="fields" disabled>
+        <div class="grid">
+          <label>Speech provider <select name="provider"><option value="openai">OpenAI</option><option value="groq">Groq</option><option value="custom">Custom compatible endpoint</option></select></label>
+          <label>Model <input name="model" required></label>
+        </div>
+        <label id="endpoint-row" hidden>Transcription URL <input name="endpoint" type="url" placeholder="https://example.com/v1/audio/transcriptions"></label>
+        <label>API key <input name="key" type="password" autocomplete="off" spellcheck="false"></label>
+        <label class="check"><input name="clearKey" type="checkbox"> Remove saved key</label>
+        <label>Custom vocabulary <textarea name="vocabulary" rows="2" placeholder="Names, acronyms, and specialist terms"></textarea></label>
+        <div class="grid">
+          <label>Global shortcut <input name="shortcut" required aria-describedby="shortcut-help"></label>
+          <label>Appearance <select name="theme"><option value="dark">Dark</option><option value="light">Light</option></select></label>
+        </div>
+        <p class="hint" id="shortcut-help">Focus the shortcut field and press your preferred key or combination. The operating system must make it available.</p>
+        <div class="row"><button type="submit">Save settings</button><p id="save-status" role="status"></p></div>
+      </fieldset>
+    </form>
+  </section>
+</main>
+</body>
+</html>
