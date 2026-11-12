@@ -6,7 +6,24 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "check": "node --check main.js && node --check preload.js && node --check renderer.js && node --test"
+    "check": "node --check main.js && node --check preload.js && node --check renderer.js && node --test",
+    "dist:win": "electron-builder --win nsis --x64 --publish never"
   },
-  "devDependencies": {"electron": "^42.0.0"}
+  "devDependencies": {
+    "electron": "^42.0.0",
+    "electron-builder": "26.18.0"
+  },
+  "build": {
+    "appId": "com.sibobai.desktop",
+    "win": {
+      "signAndEditExecutable": false,
+      "artifactName": "Sibob-AI-Setup-${version}-${arch}.${ext}"
+    },
+    "files": [
+      "*.js",
+      "index.html",
+      "style.css",
+      "!**/*.test.js"
+    ]
+  }
 }
